@@ -4,10 +4,11 @@ const pokeBtn = document.querySelector("#pokeBtn")
 
 async function getPokemon() {
     for ( let i = 0; i < 1025; i++) {    
+        let randomNumber = Math.floor(Math.random() * 1025) + 1
         try {
-            fetch(url + `/${i+1}/`)
+            fetch(url + `/${randomNumber}/`)
             .then(res => res.json())
-            .then(data => console.log(data.name))
+            .then(data => pokeContainer.textContent=(data.name))
             
         } catch(err)  {
             console.log(err)
@@ -15,4 +16,6 @@ async function getPokemon() {
     }
 }
 
-getPokemon()
+pokeBtn.addEventListener("click", (e) => {
+    getPokemon()
+})
